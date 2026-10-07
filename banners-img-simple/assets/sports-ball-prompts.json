@@ -1,0 +1,10 @@
+{
+  "tool": "built-in image_gen",
+  "transparent_background": true,
+  "prompts": {
+    "tennis": "Use case: product-mockup. Asset type: transparent sports banner decorative ball. One a neon yellow-green fuzzy tennis ball with curved white seams, photorealistic studio product cutout, centered full spherical object filling 85% of a square canvas. Warm upper-left key light, realistic material texture and dimensional shading. Actual transparent background, no ground plane, no cast shadow outside the ball, no text, no logo, no watermark, no additional objects. Sharp clean silhouette.",
+    "basketball": "Use case: product-mockup. Asset type: transparent sports banner decorative ball. One an orange pebbled leather basketball with clean black channels, photorealistic studio product cutout, centered full spherical object filling 85% of a square canvas. Warm upper-left key light, realistic material texture and dimensional shading. Actual transparent background, no ground plane, no cast shadow outside the ball, no text, no logo, no watermark, no additional objects. Sharp clean silhouette.",
+    "volleyball": "Use case: product-mockup. Asset type: transparent sports banner decorative ball. One a white, blue and yellow paneled volleyball, photorealistic studio product cutout, centered full spherical object filling 85% of a square canvas. Warm upper-left key light, realistic material texture and dimensional shading. Actual transparent background, no ground plane, no cast shadow outside the ball, no text, no logo, no watermark, no additional objects. Sharp clean silhouette.",
+    "baseball": "Use case: product-mockup. Asset type: transparent sports banner decorative ball. One a white leather baseball with red curved stitching, photorealistic studio product cutout, centered full spherical object filling 85% of a square canvas. Warm upper-left key light, realistic material texture and dimensional shading. Actual transparent background, no ground plane, no cast shadow outside the ball, no text, no logo, no watermark, no additional objects. Sharp clean silhouette."
+  }
+}

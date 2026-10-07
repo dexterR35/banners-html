@@ -1,0 +1,100 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mock ups</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0e1117;color:#9aa4b2;font:600 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px}
+.sec{max-width:2000px;margin:0 auto 56px}
+.title{color:#e6e9ef;font:700 22px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;margin-bottom:28px}
+.page{font-size:30px;margin-bottom:48px}
+.sub{font-size:18px;margin:48px 0 20px}
+.refs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin:8px 12px 0}
+.ref-group{min-width:0}
+.ref-title{color:#e6e9ef;font:700 18px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;margin:0 0 14px}
+.ref-images{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ref-images img{width:100%;height:auto;display:block;border-radius:6px}
+@media(max-width:700px){.refs{grid-template-columns:1fr}}
+.sec+.sec{border-top:1px solid #252b36;padding-top:56px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:24px}
+.cell{display:flex;justify-content:center;padding:0 12px;min-width:0}
+.card{display:flex;flex-direction:column;align-items:center;gap:10px}
+.stage{position:relative;overflow:hidden;background:#000}
+.stage iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0}
+.size{letter-spacing:.04em}
+@media(max-width:700px){.row{grid-template-columns:1fr;gap:24px}}
+</style>
+</head>
+<body>
+<h1 class="title page">Mock ups</h1>
+<div id="root"></div>
+<script>
+var SIZES=[[300,250],[300,600],[320,100],[320,50],[970,90]];
+var SETS=[['banners-img-simple','Banners 1'],['banners-video-img','Banners 2']];
+var stages=[];
+var root=document.getElementById('root');
+
+SETS.forEach(function(entry){
+  var set=entry[0];
+  var sec=document.createElement('section');sec.className='sec';
+  var h2=document.createElement('h2');h2.className='title';h2.textContent=entry[1];sec.appendChild(h2);
+  SIZES.forEach(function(s){
+    var w=s[0],h=s[1];
+    var row=document.createElement('div');row.className='row';
+    ['sport','casino'].forEach(function(t){
+      var cell=document.createElement('div');cell.className='cell';
+      var card=document.createElement('div');card.className='card';
+      var stage=document.createElement('div');stage.className='stage';
+      var f=document.createElement('iframe');
+      f.src=set+'/'+t+'_'+w+'x'+h+'/index.html';
+      f.width=w;f.height=h;f.loading='lazy';f.scrolling='no';
+      f.title=t+' '+w+'x'+h;
+      stage.appendChild(f);
+      var label=document.createElement('div');label.className='size';label.textContent=w+' × '+h;
+      card.appendChild(stage);card.appendChild(label);cell.appendChild(card);row.appendChild(cell);
+      stages.push({stage:stage,f:f,w:w,h:h,cell:cell});
+    });
+    sec.appendChild(row);
+  });
+  if(set==='banners-video-img'){
+    var rt=document.createElement('h3');rt.className='title sub';rt.textContent='Image reference for video';sec.appendChild(rt);
+    var refs=document.createElement('div');refs.className='refs';
+    var referenceScenes={
+      sport:['sport-bicycle.webp','sport-tennis.webp','sport-rugby.webp','sport-boxing.webp'],
+      casino:['casino-characters.webp','casino-1.webp','casino-room-characters.webp','casino-seven.webp']
+    };
+    ['sport','casino'].forEach(function(t){
+      var group=document.createElement('div');group.className='ref-group';
+      var title=document.createElement('h4');title.className='ref-title';title.textContent=t==='sport'?'Sport':'Casino';group.appendChild(title);
+      var images=document.createElement('div');images.className='ref-images';
+      referenceScenes[t].forEach(function(file,i){var im=document.createElement('img');im.src=set+'/assets/'+file;im.loading='lazy';im.alt=(t==='sport'?'Sport':'Casino')+' – scena '+(i+1);images.appendChild(im);});
+      group.appendChild(images);refs.appendChild(group);
+    });
+    sec.appendChild(refs);
+  }
+  root.appendChild(sec);
+});
+
+function fit(){
+  stages.forEach(function(o){
+    var avail=o.cell.clientWidth-24;
+    var k=Math.min(1,avail/o.w);
+    o.f.style.transform='scale('+k+')';
+    o.stage.style.width=o.w*k+'px';
+    o.stage.style.height=o.h*k+'px';
+  });
+}
+window.addEventListener('resize',fit);fit();</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
